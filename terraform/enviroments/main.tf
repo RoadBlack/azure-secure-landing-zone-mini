@@ -1,3 +1,4 @@
+#define the required provider and its version
 terraform {
   required_providers {
     azurerm = {
@@ -6,6 +7,7 @@ terraform {
     }
   }
 }
+#define resource group for the production environment
 resource "azurerm_resource_group" "production" {
   name     = "rg-production"
   location = var.region
@@ -15,8 +17,9 @@ resource "azurerm_resource_group" "production" {
 
 }
 
+#Creating resources in the production environment
 resource "azurerm_storage_account" "production_storage_account" {
-  name = "production-storage"
+  name = "Prodstorage"
   resource_group_name = azurerm_resource_group.production.name
   location = var.region
   account_tier = "Standard"
@@ -24,8 +27,10 @@ resource "azurerm_storage_account" "production_storage_account" {
   access_tier = "Hot"
   allow_nested_items_to_be_public = false
   https_traffic_only_enabled = true
-  min_tls_version = 1.2
+  min_tls_version = "TLS1_2"
   tags = {
     environment = "production-storage"
   }
 }
+
+
