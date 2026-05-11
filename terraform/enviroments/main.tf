@@ -8,13 +8,13 @@ terraform {
   }
 }
 provider "azurerm" {
+  subscription_id = var.subcription_id
   features {
     key_vault {
-      purge_soft_delete_on_destroy = true
       recover_soft_deleted_key_vaults = true
+      purge_soft_delete_on_destroy = true
     }
   }
-  subscription_id = var.subcription_id
 }
 
 #define resource group for the production environment
