@@ -7,6 +7,11 @@ terraform {
     }
   }
 }
+provider "azurerm" {
+  features {}
+  subscription_id = "13e501d1-26d3-4a49-a025-0cf1da12e700"
+}
+
 #define resource group for the production environment
 resource "azurerm_resource_group" "production" {
   name     = "rg-production"
