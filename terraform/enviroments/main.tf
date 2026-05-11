@@ -29,7 +29,7 @@ resource "azurerm_resource_group" "production" {
 
 #Creating resources in the production environment
 resource "azurerm_storage_account" "production_storage_account" {
-  name = "accproductionstorage"
+  name = "accproductionstorage13e50"
   resource_group_name = azurerm_resource_group.production.name
   location = var.region
   account_tier = "Standard"
@@ -50,4 +50,16 @@ resource "azurerm_key_vault" "production_key_vault" {
   enabled_for_disk_encryption = true
   tenant_id = var.tenant_id
   sku_name = "standard"
+}
+
+resource "azurerm_log_analytics_workspace" "monitor-production" {
+  name = "monitor-production" 
+  location = var.region
+  resource_group_name = azurerm_resource_group.production.name
+  retention_in_days = 30
+  sku = "PerGB2018"
+  daily_quota_gb = 1
+  tags = {
+    enviroment = "monitoring"
+  }
 }
