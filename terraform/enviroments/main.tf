@@ -19,7 +19,7 @@ resource "azurerm_resource_group" "production" {
 
 #Creating resources in the production environment
 resource "azurerm_storage_account" "production_storage_account" {
-  name = "Prodstorage"
+  name = "accproductionstorage"
   resource_group_name = azurerm_resource_group.production.name
   location = var.region
   account_tier = "Standard"
