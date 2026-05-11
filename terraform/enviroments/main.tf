@@ -8,8 +8,13 @@ terraform {
   }
 }
 provider "azurerm" {
-  features {}
-  subscription_id = "13e501d1-26d3-4a49-a025-0cf1da12e700"
+  features {
+    key_vault {
+      purge_soft_delete_on_destroy = true
+      recover_soft_deleted_key_vaults = true
+    }
+  }
+  subscription_id = var.subcription_id
 }
 
 #define resource group for the production environment
@@ -38,4 +43,17 @@ resource "azurerm_storage_account" "production_storage_account" {
   }
 }
 
-
+resource "azurerm_key_vault" "production_key_vault" {
+  name = "productionkeyvault"
+  location = var.region
+  resource_group_name = azurerm_resource_group.production.name
+  enabled_for_disk_encryption = true
+  tenant_id = var.tenant_id
+  sku_name = "standard"
+  access_policy = {
+    tenant_id = var.tenant_id
+    secret_permissions = ["get", "list"]
+    key_permissions = ["get", "list"]
+    storage_permissions = ["get", "list"]
+  }
+}
