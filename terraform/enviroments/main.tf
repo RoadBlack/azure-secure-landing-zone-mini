@@ -50,10 +50,4 @@ resource "azurerm_key_vault" "production_key_vault" {
   enabled_for_disk_encryption = true
   tenant_id = var.tenant_id
   sku_name = "standard"
-  access_policy = {
-    tenant_id = var.tenant_id
-    secret_permissions = ["get", "list"]
-    key_permissions = ["get", "list"]
-    storage_permissions = ["get", "list"]
-  }
 }
