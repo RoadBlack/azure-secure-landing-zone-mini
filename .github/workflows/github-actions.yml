@@ -1,0 +1,15 @@
+name: Terraform CI/CD
+on:
+  push:
+    branches:
+      - main
+jobs:
+    terraform-validation:
+        runs-on: ubuntu-latest
+        steps:
+            - name: checkout code
+              uses: actions/checkout@v6
+            - name: setup terraform
+              run: ls -la
+
+           

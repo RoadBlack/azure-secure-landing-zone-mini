@@ -29,7 +29,7 @@ resource "azurerm_resource_group" "production" {
 
 #Creating resources in the production environment
 resource "azurerm_storage_account" "production_storage_account" {
-  name = "accproductionstorage13e50"
+  name = "accprodstor13e50"
   resource_group_name = azurerm_resource_group.production.name
   location = var.region
   account_tier = "Standard"
@@ -44,7 +44,7 @@ resource "azurerm_storage_account" "production_storage_account" {
 }
 
 resource "azurerm_key_vault" "production_key_vault" {
-  name = "productionkeyvault"
+  name = "prodkv13e50"
   location = var.region
   resource_group_name = azurerm_resource_group.production.name
   enabled_for_disk_encryption = true
