@@ -37,7 +37,7 @@ jobs:
           id: chekov
           uses: bridgecrewio/checkov-action@master
           with:
-            severity: 'MEDIUM,HIGH,CRITICAL'
+            check: 'LOW,MEDIUM,HIGH,CRITICAL'
             directory: terraform/enviroments
             framework: terraform
             output-format: cli
