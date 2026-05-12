@@ -63,3 +63,5 @@ resource "azurerm_log_analytics_workspace" "monitor-production" {
     enviroment = "monitoring"
   }
 }
+
+
