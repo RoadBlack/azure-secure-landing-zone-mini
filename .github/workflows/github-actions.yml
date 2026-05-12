@@ -39,7 +39,7 @@ jobs:
           with:
             directory: terraform/enviroments
             framework: terraform
-            output-format: cli
+            output_format: cli
         
 
 

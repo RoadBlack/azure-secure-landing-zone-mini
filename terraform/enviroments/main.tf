@@ -36,10 +36,20 @@ resource "azurerm_storage_account" "production_storage_account" {
   account_replication_type        = "LRS"
   access_tier                     = "Hot"
   allow_nested_items_to_be_public = false
+  public_network_access_enabled   = false
   https_traffic_only_enabled      = true
   min_tls_version                 = "TLS1_2"
   tags = {
     environment = "production-storage"
+  }
+  queue_properties {
+    logging {
+      delete = true
+      read = true
+      write = true
+      version = "1.0"
+      retention_policy_days = 10
+    }
   }
 }
 
@@ -50,6 +60,11 @@ resource "azurerm_key_vault" "production_key_vault" {
   enabled_for_disk_encryption = true
   tenant_id                   = var.tenant_id
   sku_name                    = "standard"
+  public_network_access_enabled = false
+  network_acls {
+    default_action = "Deny"
+    bypass = "AzureServices"
+  }
 }
 
 resource "azurerm_log_analytics_workspace" "monitor-production" {
