@@ -13,8 +13,3 @@ variable "subcription_id" {
   description = "The azure subscription ID"
   default     = "13e501d1-26d3-4a49-a025-0cf1da12e700"
 }
-variable "Azure_key" {
-  type        = string
-  description = "The Azure key for authentication."
-  default     = "Eby8vdM02xNOcqFlqUwJPLlmEtlCDXJ1OUzFT50uSRZ6IFsuFq2UVErCz4I6tq/K1SZFPTOtr/KBHBeksoGMGw=="
-}
