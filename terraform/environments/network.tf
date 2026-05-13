@@ -14,4 +14,4 @@ resource "azurerm_network_security_group" "production_nsg" {
   name                = "production-nsg"
   resource_group_name = azurerm_resource_group.production.name
   location            = var.region
-}
+}  
